@@ -1,7 +1,8 @@
 export default function Page() {
     return <>
         
-        <h1> in projects page  </h1>
+        <p> in projects page  </p>
+
 
     </>
 }
