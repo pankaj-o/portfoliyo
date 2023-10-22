@@ -1,6 +1,8 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import TextField from '@/components/Comman/TextField';
+
 const BaseUrl = process.env.BaseUrl
 // import axios from "axios"
 const Page = () => {
@@ -10,7 +12,6 @@ const Page = () => {
     password: '',
   });
   const [isSignUp, setIsSignUp] = useState(false);
-
   const updateUserData = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -53,14 +54,14 @@ const Page = () => {
           <h1 className='text-center'>{isSignUp ? 'Create Account' : 'Sign In'}</h1>
           {isSignUp && (
             <div>
-              <input type="text" placeholder="Name" name="name" value={userData.name ?? ""} onChange={updateUserData} />
+             <TextField type="text" placeholder="Name" name="name" value={userData.name ?? ""} onChange={updateUserData}/>
             </div>
           )}
           <div>
-            <input type="email" placeholder="Email" name="email" value={userData.email ?? ""} onChange={updateUserData} />
+            <TextField type="email" placeholder="Email" name="email" value={userData.email ?? ""} onChange={updateUserData} />
           </div>
           <div>
-            <input type="password" placeholder="Password" name="password" value={userData.password ?? ""} onChange={updateUserData} />
+            <TextField type="password" placeholder="Password" name="password" value={userData.password ?? ""} onChange={updateUserData} />
           </div>
           <div className='text-center'>
             <button className="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 ... hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleFormSubmit}>
