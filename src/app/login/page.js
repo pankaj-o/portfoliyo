@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TextField from '@/components/Comman/TextField';
+import { EmailCheck,PasswordCheck } from '@/components/Utils/Utils';
 
 const BaseUrl = process.env.BaseUrl
 // import axios from "axios"
@@ -19,10 +20,11 @@ const Page = () => {
 
   const handleFormSubmit = () => {
     const isSignUpValid = isSignUp ? (userData.name.length > 0) : true;
-    const isEmailValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(userData.email);
-    const isPasswordValid = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(userData.password);
+    const isEmailValid = EmailCheck(userData.email)
+    const isPasswordValid =PasswordCheck(userData.password);
 
     if (isSignUpValid && isEmailValid && isPasswordValid) {
+
       console.log(userData);
       signUp(userData);
     } else {
@@ -41,8 +43,13 @@ const Page = () => {
     });
   };
   const signUp = async (data) => {
-    const res = await axios.post('http://localhost:8081/registerUser', data);
-    console.log(res.data);
+    try {
+      const res = await axios.post('http://localhost:8081/registerUser', data);
+      console.log(res.data);
+      
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -61,7 +68,7 @@ const Page = () => {
             <TextField type="email" placeholder="Email" name="email" value={userData.email ?? ""} onChange={updateUserData} />
           </div>
           <div>
-            <TextField type="password" placeholder="Password" name="password" value={userData.password ?? ""} onChange={updateUserData} />
+            <TextField  className="hover:animate-shake" type="password" placeholder="Password" name="password" value={userData.password ?? ""} onChange={updateUserData} />
           </div>
           <div className='text-center'>
             <button className="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 ... hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleFormSubmit}>
