@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* fonts.css */
+
+@font-face {
+  font-family: 'Playpen Sans';
+  src: url('../../public//font/PlaypenSans-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

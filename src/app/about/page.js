@@ -1,7 +1,4 @@
 "use client"
-
-import TogglePanel from "@/components/Toggle"
-
 export default function Page() {
     return <>
         <div className="toggle-panel toggle-left">

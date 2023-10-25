@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import AnimatedDiv from "./AnimatedDiv";
 
-const ImageText = ({ text }) => {
+const ImageText = ({ text,link }) => {
   return (
     <div className="showcase relative w-full h-screen">
       <video
@@ -12,11 +12,16 @@ const ImageText = ({ text }) => {
         loop
         muted
       ></video>
-      <div className="absolute w-full h-full mix-blend-multiply text-white bg-black text-8xl flex items-center justify-center z-1">
+      <div
+        className="absolute w-full h-full mix-blend-multiply text-white bg-black text-8xl flex items-center justify-center z-1"
+        style={{
+          fontFamily: "Playpen Sans",
+        }}
+      >
         {text}
       </div>
       <Link
-        href="/login"
+        href={`${link}`}
         className="absolute  text-2xl  z-1 "
         style={{
           top: "60%",
